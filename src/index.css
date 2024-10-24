@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.start-page-container {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f7fc;
+  line-height: 1.6;
+  color: #34495e;
+}
+
+
+.start-page-container .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.start-page-container .navbar h1.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2980b9;
+}
+
+.start-page-container .navbar ul {
+  display: flex;
+  gap: 30px;
+}
+
+.start-page-container .navbar ul li {
+  font-size: 16px;
+}
+
+.start-page-container .navbar ul li a {
+  font-weight: 500;
+  color: #2980b9;
+}
+
+.start-page-container .navbar ul li a:hover {
+  color: #3498db;
+}
+
+/* Hero Section */
+.start-page-container .hero-section {
+  text-align: center;
+  padding: 150px 20px;
+  background: linear-gradient(to right, #2980b9, #6a89cc);
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-page-container .hero-section h1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.start-page-container .hero-section p {
+  font-size: 20px;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.start-page-container .start-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.start-page-container .start-btn:hover {
+  background-color: #2ecc71;
+  transform: translateY(-2px);
+}
+
+/* Features and How it Works sections */
+.start-page-container .features-section, .start-page-container .how-it-works-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.start-page-container .features-section h2, .start-page-container .how-it-works-section h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #2980b9;
+}
+
+.start-page-container .features-section p, .start-page-container .how-it-works-section p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #7f8c8d;
+}
+
+.start-page-container .features-section {
+  background-color: #ecf0f1;
+}
+
+.start-page-container .how-it-works-section {
+  background-color: white;
+}
+
+/* Footer */
+.start-page-container footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}
+
+.start-page-container footer p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Modal specific to StartPage */
+.start-page-container .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.start-page-container .modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.start-page-container .modal h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #2980b9;
+}
+
+.start-page-container .modal p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #34495e;
+}
+
+.start-page-container .modal-actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.start-page-container .modal-actions .confirm-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.start-page-container .modal-actions .cancel-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+/* LoginPage Styles */
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #eaf2f8; 
+  font-family: 'Inter', sans-serif;
+}
+
+.login-page-container h1 {
+  font-size: 36px;
+  color: #2980b9; 
+  margin-bottom: 20px;
+}
+
+.login-button {
+  background-color: #27ae60; 
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background-color: #2ecc71; 
+  transform: translateY(-2px); 
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .login-page-container h1 {
+    font-size: 28px;
+  }
+
+  .login-button {
+    font-size: 16px;
+  }
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+/* SignupPage Styles */
+.signup-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9fbe7; 
+  font-family: 'Inter', sans-serif;
+}
+
+.signup-page-container h1 {
+  font-size: 36px;
+  color: #8e44ad; 
+  margin-bottom: 20px;
+}
+
+.signup-button {
+  background-color: #2980b9; 
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.signup-button:hover {
+  background-color: #3498db; 
+  transform: translateY(-2px); 
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .signup-page-container h1 {
+    font-size: 28px;
+  }
+
+  .signup-button {
+    font-size: 16px;
+  }
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Exam Page Styles */
+
+.exam-page {
+  padding: 50px;
+  background-color: #ecf0f1;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 80%; 
+  max-width: 1200px;
+  margin: 50px auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.question-field {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 25px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  font-size: 18px;
+  color: #333;
+}
+
+.essay-form {
+  width: 60%; 
+  margin: 0 auto; 
+}
+
+textarea {
+  width: 1000px;
+  height: 300px; 
+  font-size: 18px;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  resize: none;
+  margin-bottom: 20px;
+}
+
+.submit-btn {
+  background-color: #27ae60;
+  padding: 16px 40px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #2ecc71;
+}
+
+.result-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.result-section h2 {
+  font-size: 32px;
+  color: #2980b9;
+}
+
+.result-section .grade {
+  font-size: 28px;
+  color: #27ae60;
+  margin-top: 10px;
+}
+
+/* Mobile restriction message */
+.mobile-restricted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 22px;
+  color: #e74c3c;
+}
+
