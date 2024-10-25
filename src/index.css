@@ -302,6 +302,8 @@
 
 /* Exam Page Styles */
 
+/* Exam Page Styles */
+
 .exam-page {
   padding: 50px;
   background-color: #ecf0f1;
@@ -331,13 +333,12 @@
 }
 
 .essay-form {
-  /* width: 60%;  */
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 textarea {
   width: 1000px;
-  height: 300px; 
+  height: 300px;
   font-size: 18px;
   padding: 25px;
   border-radius: 12px;
@@ -345,6 +346,23 @@ textarea {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   resize: none;
   margin-bottom: 20px;
+}
+
+.word-counter {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.word-counter span {
+  color: #333;
+}
+
+.word-counter span.red {
+  color: red;
+}
+
+.word-counter span.black {
+  color: black;
 }
 
 .submit-btn {
@@ -423,6 +441,42 @@ textarea {
   cursor: pointer;
   font-size: 1em;
 }
+
+/* Style for the timer */
+.timer-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  color: #27ae60;
+}
+
+.timer-up-icon {
+  color: #e74c3c;
+}
+
+/* Style for the welcome modal */
+.welcome-modal h2 {
+  font-size: 24px;
+  color: #2980b9;
+  margin-bottom: 20px;
+}
+
+.welcome-modal button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.welcome-modal button:hover {
+  background-color: #2980b9;
+}
+
 
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/

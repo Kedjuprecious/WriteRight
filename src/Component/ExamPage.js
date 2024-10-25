@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import EssayForm from "./EssayForm";
 import Question from "./Question";
 import Result from "./Result";
 import Timer from './Timer'; 
@@ -13,8 +12,8 @@ const ExamPage = () => {
     const [grade, setGrade] = useState(null);
     const [essay, setEssay] = useState("");
     const [wordCount, setWordCount] = useState(0);
-    const [timeUp, setTimeUp] = useState(false); // To handle time up
-    const [showWelcome, setShowWelcome] = useState(true); // To show welcome message
+    const [timeUp, setTimeUp] = useState(false);
+    const [showWelcome, setShowWelcome] = useState(true);
 
     const maxWords = 500;
     const minWords = 150;
@@ -23,29 +22,25 @@ const ExamPage = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/questions", {
-                    withCredentials: true,
-                });
-                setQuestions(response.data);
+                const response = await axios.get("http://localhost:5000/api/question");
+                setQuestions([response.data]); // Adjusted to set single question
             } catch (error) {
-                console.error("Error fetching questions:", error);
+                console.error("Error fetching question:", error);
             }
         };
 
         fetchQuestions();
     }, []);
 
-    // Handle essay submission directly to Gradio model
+    // Handle essay submission to the backend
     const handleSubmission = async (e) => {
-        if (e) e.preventDefault(); // Check if e exists before calling preventDefault
+        if (e) e.preventDefault();
 
         if (wordCount >= minWords) {
             try {
-                const gradioUrl = 'https://5be2924f5470141f7e.gradio.live'; 
-                const response = await axios.post(gradioUrl, { data: [essay] });
-                
-                const receivedGrade = response.data?.data?.[0];
-                setGrade(receivedGrade);
+                const response = await axios.post("http://localhost:5000/api/submit", { essay });
+                const gradingResult = response.data;
+                setGrade(gradingResult);
                 setIsSubmitted(true);
             } catch (error) {
                 console.error('Error grading essay:', error);
@@ -56,74 +51,53 @@ const ExamPage = () => {
         }
     };
 
-    // Word counter handler
     const handleEssayChange = (e) => {
         const inputText = e.target.value;
-        const wordArray = inputText.trim().split(/\s+/);
-        const wordsUsed = wordArray.filter((word) => word).length; // Filter out empty spaces
-
+        const wordsUsed = inputText.trim().split(/\s+/).filter(word => word).length;
         if (wordsUsed <= maxWords) {
             setEssay(inputText);
             setWordCount(wordsUsed);
         }
     };
 
-    // Timer's onTimeUp handler
     const handleTimeUp = () => {
         setTimeUp(true);
-        handleSubmission(); // Automatically submit the essay when time is up
+        handleSubmission(); // Auto-submit on time up
     };
 
-    const handleStartExam = () => {
-        setShowWelcome(false); // Hide welcome message
-    };
+    const handleStartExam = () => setShowWelcome(false);
 
     return (
         <div className="exam-page">
             {showWelcome && (
                 <div className="welcome-modal">
-                    <h2 className="user-name">You are ready to start your exam, {auth.currentUser?.displayName}!</h2>
-                    <p className="user-email">Your email: {auth.currentUser?.email}</p>
+                    <h2>Welcome, {auth.currentUser?.displayName}!</h2>
                     <button onClick={handleStartExam}>Start Exam</button>
                 </div>
             )}
-
             {!isSubmitted && !timeUp && !showWelcome && (
                 <>
-                    {/* Timer Component */}
                     <Timer onTimeUp={handleTimeUp} />
-
-                    {/* Display question */}
-                    <div className="question-field">
-                        <div>{questions[currentQuestionIndex]}</div>
-                    </div>
-
-                    {/* Essay input form */}
+                    <Question question={questions[currentQuestionIndex]} />
                     <form onSubmit={handleSubmission}>
-                        <div className="essay-form">
-                            <textarea
-                                value={essay}
-                                onChange={handleEssayChange}
-                                placeholder="Type your essay here..."
-                            />
-                            <div className="word-counter">
-                                <span style={{ color: wordCount < minWords ? 'red' : 'black' }}>
-                                    {wordCount}/{maxWords}
-                                </span>
-                            </div>
-                            <button type="submit" className="submit-btn">Submit</button>
+                        <textarea
+                            value={essay}
+                            onChange={handleEssayChange}
+                            placeholder="Type your essay here..."
+                        />
+                        {/* Word Count Display */}
+                        <div 
+                            style={{ 
+                                color: wordCount < minWords ? 'red' : 'black' 
+                            }}
+                        >
+                            {wordCount}/{maxWords}
                         </div>
+                        <button type="submit">Submit</button>
                     </form>
                 </>
             )}
-
-            {/* Result section displayed when submitted */}
-            {isSubmitted && (
-                <div className="result-section">
-                    <h2>Essay Graded</h2>
-                    <p>Your grade: {grade}</p>
-                </div>
-            )}
+            {isSubmitted && <Result grade={grade} question={questions[currentQuestionIndex]} essay={essay} />}
         </div>
     );
 };
