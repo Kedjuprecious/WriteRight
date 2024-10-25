@@ -11,20 +11,25 @@ const StartPage = () => {
         setShowModal(true); // Show confirmation modal before navigating
     };
 
-    const confirmStart = async () => {
+    // const confirmStart = async () => {
+    //     setShowModal(false);
+    //     if (!auth.currentUser) { // Check if user is not logged in
+    //         try {
+    //             await signInWithPopup(auth, provider); // Attempt Google Sign-In
+    //             // After signing in, navigate to the Exam page
+    //             navigate('/exam'); 
+    //         } catch (error) {
+    //             console.error("Error signing in: ", error);
+    //             alert("Login failed. Please try again.");
+    //         }
+    //     } else {
+    //         navigate('/exam'); // Navigate to the exam page directly if already logged in
+    //     }
+    // };
+
+    const confirmStart = () => {
         setShowModal(false);
-        if (!auth.currentUser) { // Check if user is not logged in
-            try {
-                await signInWithPopup(auth, provider); // Attempt Google Sign-In
-                // After signing in, navigate to the Exam page
-                navigate('/exam'); 
-            } catch (error) {
-                console.error("Error signing in: ", error);
-                alert("Login failed. Please try again.");
-            }
-        } else {
-            navigate('/exam'); // Navigate to the exam page directly if already logged in
-        }
+        navigate('/auth'); // Navigate to the auth page
     };
 
     const cancelStart = () => {

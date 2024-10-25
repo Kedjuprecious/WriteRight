@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Timer = ({ onTimeUp, examStartTime }) => {
     const [timeRemaining, setTimeRemaining] = useState(() => {
         const savedTime = localStorage.getItem('timeRemaining');
-        return savedTime ? JSON.parse(savedTime) : 15; // default to 1 hour
+        return savedTime ? JSON.parse(savedTime) : 5400; 
     });
 
     useEffect(() => {

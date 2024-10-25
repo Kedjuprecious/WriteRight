@@ -4,6 +4,7 @@ import Question from "./Question";
 import Result from "./Result";
 import Timer from './Timer'; 
 import axios from 'axios';
+import { auth } from '../firebase';
 
 const ExamPage = () => {
     const [questions, setQuestions] = useState([]);
@@ -13,6 +14,7 @@ const ExamPage = () => {
     const [essay, setEssay] = useState("");
     const [wordCount, setWordCount] = useState(0);
     const [timeUp, setTimeUp] = useState(false); // To handle time up
+    const [showWelcome, setShowWelcome] = useState(true); // To show welcome message
 
     const maxWords = 500;
     const minWords = 150;
@@ -33,7 +35,27 @@ const ExamPage = () => {
         fetchQuestions();
     }, []);
 
-    
+    // Handle essay submission directly to Gradio model
+    const handleSubmission = async (e) => {
+        if (e) e.preventDefault(); // Check if e exists before calling preventDefault
+
+        if (wordCount >= minWords) {
+            try {
+                const gradioUrl = 'https://5be2924f5470141f7e.gradio.live'; 
+                const response = await axios.post(gradioUrl, { data: [essay] });
+                
+                const receivedGrade = response.data?.data?.[0];
+                setGrade(receivedGrade);
+                setIsSubmitted(true);
+            } catch (error) {
+                console.error('Error grading essay:', error);
+                alert("There was an error grading your essay. Please try again.");
+            }
+        } else {
+            alert("Please write at least 150 words.");
+        }
+    };
+
     // Word counter handler
     const handleEssayChange = (e) => {
         const inputText = e.target.value;
@@ -46,38 +68,27 @@ const ExamPage = () => {
         }
     };
 
-    // Handle essay submission directly to Gradio model
-    // Handle essay submission directly to Gradio model
-const handleSubmission = async (e) => {
-    if (e) e.preventDefault(); // Check if e exists before calling preventDefault
-
-    if (wordCount >= minWords) {
-        try {
-            const gradioUrl = 'https://5be2924f5470141f7e.gradio.live'; 
-            const response = await axios.post(gradioUrl, { data: [essay] });
-            
-            const receivedGrade = response.data?.data?.[0];
-            setGrade(receivedGrade);
-            setIsSubmitted(true);
-        } catch (error) {
-            console.error('Error grading essay:', error);
-            alert("There was an error grading your essay. Please try again.");
-        }
-    } else {
-        alert("Please write at least 150 words.");
-    }
-};
-
-
     // Timer's onTimeUp handler
     const handleTimeUp = () => {
         setTimeUp(true);
         handleSubmission(); // Automatically submit the essay when time is up
     };
 
+    const handleStartExam = () => {
+        setShowWelcome(false); // Hide welcome message
+    };
+
     return (
         <div className="exam-page">
-            {!isSubmitted && !timeUp && (
+            {showWelcome && (
+                <div className="welcome-modal">
+                    <h2 className="user-name">You are ready to start your exam, {auth.currentUser?.displayName}!</h2>
+                    <p className="user-email">Your email: {auth.currentUser?.email}</p>
+                    <button onClick={handleStartExam}>Start Exam</button>
+                </div>
+            )}
+
+            {!isSubmitted && !timeUp && !showWelcome && (
                 <>
                     {/* Timer Component */}
                     <Timer onTimeUp={handleTimeUp} />
@@ -113,23 +124,6 @@ const handleSubmission = async (e) => {
                     <p>Your grade: {grade}</p>
                 </div>
             )}
-
-            {/* Display when time is up
-            {timeUp && !isSubmitted && (
-                <div className="result-section">
-                    <h2>Time is up!</h2>
-                    <p>Your essay has been submitted automatically.</p>
-                </div>
-            )} */}
-
-            {questions.length > 0 && !isSubmitted && (
-                <>
-                    <Question question={questions[currentQuestionIndex]} />
-                    <EssayForm onSubmit={handleSubmission} />
-                </>
-            )}
-            {isSubmitted && <Result grade={grade} question={questions[currentQuestionIndex]} essay={essay} />}
-
         </div>
     );
 };

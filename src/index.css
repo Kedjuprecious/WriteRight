@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -329,7 +331,7 @@
 }
 
 .essay-form {
-  width: 60%; 
+  /* width: 60%;  */
   margin: 0 auto; 
 }
 
@@ -387,3 +389,101 @@ textarea {
   color: #e74c3c;
 }
 
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+/* AuthPage.css */
+
+.auth-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.login-signup {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-button {
+  background-color: #4285f4; /* Google blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 300px; /* Max width for better design on larger screens */
+}
+
+.auth-button:hover {
+  background-color: #357ae8; /* Darker shade for hover effect */
+}
+
+.signup-link {
+  color: #4285f4;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signup-link:hover {
+  color: #357ae8; /* Darker shade for hover effect */
+}
+
+.account {
+  margin: 10px 0 0 0;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Modal for Login on SignUp button */
+.modal-overlay-signup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-signup {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+.registration-sucessful {
+  margin-bottom: 10px;
+}
+
+.login-btn {
+  margin-top: 10px;
+}
